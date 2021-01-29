@@ -1,0 +1,56 @@
+/* eslint-env jest */
+import { getProxyWalletAddress } from "../src";
+
+const testCases: [[string, string], string][] = [
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0x00002569317Dc5588b59BAe5F63F5F8945912e58"],
+    "0x0D56FeAd54dd28cb7A903E7C6f2AeED9a26D6910",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0x002b8410e87FE36907602bAD0706642AaA3B9f8d"],
+    "0xeDB217f9B4BEF2A328453C9ce669C01103b76256",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0x0050aCEb61fAD6F7130b678991a8AAb9e8bA01d4"],
+    "0x4631a2C46512B3639881b3b110189D520556d3A6",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xffeE4f6510312b7E9d066b124bf84Cb81cF6d2D2"],
+    "0xa810B581E0614749845D8f8a1F77199b486D3b43",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xff5Dc13E00593957F6a62F3a2F39e8446Bca2086"],
+    "0x28D96cFcAc8210167Ed63401850AB8609898d31E",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xFF8F0f472C1B2c51a9869FfbFE59578e9f814eA3"],
+    "0xc7498D2C55dA9134f4Fcf8A8F5926bECCdBA409E",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xFEf1a35FC07A89FF46E969F4a4Db6F601fA2E0d6"],
+    "0xaE7Be8967fd2d17cDeF9923035633f2905Ac0B9f",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xfF161f8A02315BfddB94c8aC6c7AdaB3D605C155"],
+    "0x7D9023ed6C6a99F22aD6E5a9135BFb002088B92e",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xfDd284a9B2A8Ff58585cA8fb027aecDe948C3f3e"],
+    "0xce2EF09B3E4F85C40CE593A4C7630648648e794f",
+  ],
+  [
+    ["0xaB45c5A4B0c941a2F231C04C3f49182e1A254052", "0xFD742C2b0359f73E79e13505c881B9D7aF81467D"],
+    "0x26aff3bD0ecd5Ff24b3200C71c052f5F804a04de",
+  ],
+];
+
+describe("getProxyWalletAddress", () => {
+  it.each(testCases)(
+    `should compute the correct proxy wallet address`,
+    ([factoryAddress, userAddress], expectedProxyWalletAddress) => {
+      const proxyWalletAddress = getProxyWalletAddress(factoryAddress, userAddress);
+
+      expect(proxyWalletAddress).toEqual(expectedProxyWalletAddress);
+    },
+  );
+});

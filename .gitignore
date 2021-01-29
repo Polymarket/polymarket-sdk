@@ -1,0 +1,6 @@
+# folders
+node_modules/
+lib
+
+*.log
+*.tgz

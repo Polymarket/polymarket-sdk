@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "lib",
+    "lib": ["dom"],
+    "sourceMap": false,
+    "allowJs": false,
+    "declaration": true,
+    "declarationDir": "lib",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src", "test", "jest.config.js"],
+  "exclude": ["node_modules", "lib"]
+}
