@@ -9,7 +9,6 @@ import {
   isBurnTxCheckpointed as checkExitIsCheckpointed,
 } from "@tomfrench/matic-proofs";
 import { CallType, Transaction } from "../types";
-import { erc20TransferTransaction } from "../utils";
 
 // re-export helper functions from @tomfrench/matic-proofs for checking whether exit can be claimed
 export { checkExitIsCheckpointed, checkExitIsValid };
@@ -78,27 +77,3 @@ export const exitFundsFromMatic = async (
   burnTxHash: string,
 ): Promise<Transaction[]> =>
   multipleExitFundsFromMatic(rootChainProvider, maticChainProvider, rootChainManagerAddress, [burnTxHash]);
-
-/**
- * @deprecated
- * @param rootChainProvider - The provider used for querying the root chain
- * @param maticChainProvider - The JSONRpcProvider used for querying the child chain
- * @param rootChainManagerAddress - The address of the rootchain manager contract
- * @param burnTxHash - the transaction hash to be tested
- * @param recipientAddress - the address to forward the withdrawn funds to
- * @param expectedWithdrawalAmount - the amount in wei of withdrawn funds to transfer to recipientAddress
- */
-export const exitFundsFromMaticAndForward = async (
-  rootChainProvider: Provider,
-  maticChainProvider: JsonRpcProvider,
-  rootChainManagerAddress: string,
-  burnTxHash: string,
-  tokenAddress: string,
-  recipientAddress: string,
-  expectedWithdrawalAmount: BigNumberish,
-): Promise<Transaction[]> => {
-  return Promise.all([
-    exitTransaction(rootChainProvider, maticChainProvider, rootChainManagerAddress, burnTxHash),
-    erc20TransferTransaction(tokenAddress, recipientAddress, expectedWithdrawalAmount),
-  ]);
-};
