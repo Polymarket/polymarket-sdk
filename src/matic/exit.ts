@@ -4,14 +4,11 @@ import { JsonRpcProvider, Provider } from "@ethersproject/providers";
 import {
   buildPayloadForExit,
   encodePayload,
-  isBurnTxClaimable as checkExitIsValid,
   isBurnTxCheckpointed as checkExitIsCheckpointed,
   EventSignature,
+  isBurnTxClaimable,
 } from "@tomfrench/matic-proofs";
 import { CallType, Transaction } from "../types";
-
-// re-export helper functions from @tomfrench/matic-proofs for checking whether exit can be claimed
-export { checkExitIsCheckpointed, checkExitIsValid };
 
 const encodeExit = (exitData: BigNumberish): string =>
   new Interface(["function exit(bytes)"]).encodeFunctionData("exit(bytes)", [exitData]);
@@ -77,3 +74,29 @@ export const exitFundsFromMatic = async (
   burnTxHash: string,
 ): Promise<Transaction[]> =>
   multipleExitFundsFromMatic(rootChainProvider, maticChainProvider, rootChainManagerAddress, [burnTxHash]);
+
+/**
+ * Check whether a withdrawal has been processed on the root chain
+ * @param rootChainProvider - a Provider for the root chain (Ethereum)
+ * @param maticChainProvider - a JSONRpcProvider for the child chain (Matic)
+ * @param rootChainContractAddress - The address of the rootChainManager contract
+ * @param burnTxHash - The hash of the transaction of interest on the child chain
+ * @param logEventSig - The event signature for the log to check for
+ * @param exitProcessorAddress - The address of the contract which tracks whether this exit has been processed
+ */
+export const checkExitIsValid = (
+  rootChainProvider: Provider,
+  maticChainProvider: JsonRpcProvider,
+  rootChainContractAddress: string,
+  burnTxHash: string,
+): Promise<boolean> =>
+  isBurnTxClaimable(
+    rootChainProvider,
+    maticChainProvider,
+    rootChainContractAddress,
+    burnTxHash,
+    EventSignature.ERC20Transfer,
+  );
+
+// re-export helper function from @tomfrench/matic-proofs for checking whether exit is checkpointed
+export { checkExitIsCheckpointed };
