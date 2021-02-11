@@ -5,8 +5,8 @@ import {
   buildPayloadForExit,
   encodePayload,
   isBurnTxClaimable as checkExitIsValid,
-  ERC20_TRANSFER_EVENT_SIG,
   isBurnTxCheckpointed as checkExitIsCheckpointed,
+  EventSignature,
 } from "@tomfrench/matic-proofs";
 import { CallType, Transaction } from "../types";
 
@@ -34,7 +34,7 @@ const exitTransaction = async (
     maticChainProvider,
     rootChainManagerAddress,
     burnTxHash,
-    ERC20_TRANSFER_EVENT_SIG,
+    EventSignature.ERC20Transfer,
   );
   return {
     to: rootChainManagerAddress,
