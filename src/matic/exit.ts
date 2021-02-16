@@ -76,13 +76,12 @@ export const exitFundsFromMatic = async (
   multipleExitFundsFromMatic(rootChainProvider, maticChainProvider, rootChainManagerAddress, [burnTxHash]);
 
 /**
- * Check whether a withdrawal has been processed on the root chain
+ * Check whether a withdrawal is ready to be processed on the root chain.
+ * Returns false if the withdrawal is not checkpointed or has already been claimed.
  * @param rootChainProvider - a Provider for the root chain (Ethereum)
  * @param maticChainProvider - a JSONRpcProvider for the child chain (Matic)
  * @param rootChainContractAddress - The address of the rootChainManager contract
  * @param burnTxHash - The hash of the transaction of interest on the child chain
- * @param logEventSig - The event signature for the log to check for
- * @param exitProcessorAddress - The address of the contract which tracks whether this exit has been processed
  */
 export const checkExitIsValid = (
   rootChainProvider: Provider,
