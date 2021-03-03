@@ -1,14 +1,10 @@
 import { Interface } from "@ethersproject/abi";
 import { BigNumberish } from "@ethersproject/bignumber";
 import { JsonRpcProvider, Provider } from "@ethersproject/providers";
-import {
-  buildPayloadForExit,
-  encodePayload,
-  isBurnTxCheckpointed as checkExitIsCheckpointed,
-  EventSignature,
-  isBurnTxClaimable,
-} from "@tomfrench/matic-proofs";
+import { buildPayloadForExit, encodePayload, EventSignature, isBurnTxClaimable } from "@tomfrench/matic-proofs";
 import { CallType, Transaction } from "../types";
+
+export { isBurnTxCheckpointed as checkExitIsCheckpointed } from "@tomfrench/matic-proofs";
 
 const encodeExit = (exitData: BigNumberish): string =>
   new Interface(["function exit(bytes)"]).encodeFunctionData("exit(bytes)", [exitData]);
@@ -96,6 +92,3 @@ export const checkExitIsValid = (
     burnTxHash,
     EventSignature.ERC20Transfer,
   );
-
-// re-export helper function from @tomfrench/matic-proofs for checking whether exit is checkpointed
-export { checkExitIsCheckpointed };
