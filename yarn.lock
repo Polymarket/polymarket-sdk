@@ -781,10 +781,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tomfrench/matic-proofs@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@tomfrench/matic-proofs/-/matic-proofs-0.3.1.tgz#80036b2b68ea0cb81ed1e9631b5e8188d2e43574"
-  integrity sha512-AQU0hEA6YAcaOmz6EsPn05nFr3UUwJgaPN9maY/Ry3xhyUUxQuoDK0gw4+T5miANtlzonVum3xIALRtazBB08w==
+"@tomfrench/matic-proofs@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@tomfrench/matic-proofs/-/matic-proofs-0.3.2.tgz#fb1153b08bd004be0d0dc4086f839d6b93f04e3a"
+  integrity sha512-mT7LuHYDLbnqJBfux7CWI6TQcPw/I9ghGj+ZBbbvAsSP2I/O7HkzNeZh9tAXoPoOq5mbehJq11F6HyYai9BWcA==
   dependencies:
     bluebird "^3.7.2"
     ethereumjs-util "^7.0.5"

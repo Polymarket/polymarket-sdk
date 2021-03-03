@@ -3,6 +3,8 @@ import { BigNumberish } from "@ethersproject/bignumber";
 import { erc20ApprovalTransaction } from "../utils";
 import { CallType, Transaction } from "../types";
 
+export { isRootTxStateSynced as isDepositComplete } from "@tomfrench/matic-proofs";
+
 const encodeMaticDeposit = (
   recipientAddress: string,
   mainnetTokenAddress: string,
