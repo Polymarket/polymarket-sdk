@@ -9,15 +9,17 @@ const encodeSafeAddFunding = (
   distributionHint: BigNumberish[],
   positionId: BigNumberish,
   minRefund: BigNumberish,
+  maxRefund: BigNumberish,
 ): string =>
   new Interface([
-    "function addFunding(address,uint256,uint256[] memory,uint256,uint256)",
-  ]).encodeFunctionData("addFunding(address,uint256,uint256[] memory,uint256,uint256)", [
+    "function addFunding(address,uint256,uint256[] memory,uint256,uint256,uint256)",
+  ]).encodeFunctionData("addFunding(address,uint256,uint256[] memory,uint256,uint256,uint256)", [
     marketMakerAddress,
     investmentAmount,
     distributionHint,
     positionId,
     minRefund,
+    maxRefund,
   ]);
 
 const safeAddFundingTransaction = (
@@ -27,10 +29,11 @@ const safeAddFundingTransaction = (
   distributionHint: BigNumberish[],
   positionId: BigNumberish,
   minRefund: BigNumberish,
+  maxRefund: BigNumberish,
 ): Transaction => ({
   to: slippageCheckerAddress,
   typeCode: CallType.DelegateCall,
-  data: encodeSafeAddFunding(marketMakerAddress, investmentAmount, distributionHint, positionId, minRefund),
+  data: encodeSafeAddFunding(marketMakerAddress, investmentAmount, distributionHint, positionId, minRefund, maxRefund),
   value: "0",
 });
 
@@ -42,6 +45,7 @@ export const safeAddFundingToMarket = (
   distributionHint: BigNumberish[] = [],
   positionId: BigNumberish,
   minRefund: BigNumberish,
+  maxRefund: BigNumberish,
 ): Transaction[] => [
   erc20ApprovalTransaction(collateralTokenAddress, marketMakerAddress, investmentAmount),
   safeAddFundingTransaction(
@@ -51,5 +55,6 @@ export const safeAddFundingToMarket = (
     distributionHint,
     positionId,
     minRefund,
+    maxRefund,
   ),
 ];
