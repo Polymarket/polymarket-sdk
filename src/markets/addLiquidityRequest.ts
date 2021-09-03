@@ -1,11 +1,14 @@
 import { Interface } from "@ethersproject/abi";
 import { BigNumber } from "@ethersproject/bignumber";
 import { CallType, Transaction } from "../types";
+import LiquidityRequestLogABI from "../abi/LiquidityRequestLog.json";
 
 const encodeAddLiquidityRequest = (reason: string, marketMakerAddress: string, tradeAmount: BigNumber): string =>
-  new Interface([
-    "function addLiquidityRequest(string,address,uint256)",
-  ]).encodeFunctionData("addLiquidityRequest(string,address,uint256)", [reason, marketMakerAddress, tradeAmount]);
+  new Interface(LiquidityRequestLogABI).encodeFunctionData("addLiquidityRequest(string,address,uint256)", [
+    reason,
+    marketMakerAddress,
+    tradeAmount,
+  ]);
 
 const addLiquidityRequestTransaction = (
   liquidityRequestLog: string,
