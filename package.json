@@ -1,6 +1,6 @@
 {
   "name": "@polymarket/sdk",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "SDK to simplify common interactions with the Polymarket proxy wallet",
   "author": "Tom French <tom@tomfren.ch>",
   "repository": "https://github.com/TokenUnion/polymarket-sdk.git",
@@ -38,6 +38,8 @@
     "@ethersproject/keccak256": "^5.0.6",
     "@ethersproject/providers": "^5.0.14",
     "@ethersproject/solidity": "^5.0.7",
+    "@types/jest": "^27.0.1",
+    "@types/mocha": "^9.0.0",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-typescript-prettier": "^4.1.0",
     "jest": "^26.6.3",
