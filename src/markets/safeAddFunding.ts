@@ -7,33 +7,36 @@ const encodeSafeAddFunding = (
   marketMakerAddress: string,
   investmentAmount: BigNumberish,
   distributionHint: BigNumberish[],
-  positionId: BigNumberish,
-  minRefund: BigNumberish,
-  maxRefund: BigNumberish,
+  positionIds: BigNumberish[],
+  minRefunds: BigNumberish[],
+  maxRefunds: BigNumberish[],
 ): string =>
   new Interface([
-    "function addFunding(address,uint256,uint256[] memory,uint256,uint256,uint256)",
-  ]).encodeFunctionData("addFunding(address,uint256,uint256[] memory,uint256,uint256,uint256)", [
-    marketMakerAddress,
-    investmentAmount,
-    distributionHint,
-    positionId,
-    minRefund,
-    maxRefund,
-  ]);
+    "function addFunding(address,uint256,uint256[] memory,uint256[] memory,uint256[] memory,uint256[] memory)",
+  ]).encodeFunctionData(
+    "addFunding(address,uint256,uint256[] memory,uint256[] memory,uint256[] memory,uint256[] memory)",
+    [marketMakerAddress, investmentAmount, distributionHint, positionIds, minRefunds, maxRefunds],
+  );
 
 const safeAddFundingTransaction = (
   slippageCheckerAddress: string,
   marketMakerAddress: string,
   investmentAmount: BigNumberish,
   distributionHint: BigNumberish[],
-  positionId: BigNumberish,
-  minRefund: BigNumberish,
-  maxRefund: BigNumberish,
+  positionIds: BigNumberish[],
+  minRefunds: BigNumberish[],
+  maxRefunds: BigNumberish[],
 ): Transaction => ({
   to: slippageCheckerAddress,
   typeCode: CallType.DelegateCall,
-  data: encodeSafeAddFunding(marketMakerAddress, investmentAmount, distributionHint, positionId, minRefund, maxRefund),
+  data: encodeSafeAddFunding(
+    marketMakerAddress,
+    investmentAmount,
+    distributionHint,
+    positionIds,
+    minRefunds,
+    maxRefunds,
+  ),
   value: "0",
 });
 
@@ -43,9 +46,9 @@ export const safeAddFundingToMarket = (
   collateralTokenAddress: string,
   investmentAmount: BigNumberish,
   distributionHint: BigNumberish[] = [],
-  positionId: BigNumberish,
-  minRefund: BigNumberish,
-  maxRefund: BigNumberish,
+  positionIds: BigNumberish[],
+  minRefunds: BigNumberish[],
+  maxRefunds: BigNumberish[],
 ): Transaction[] => [
   erc20ApprovalTransaction(collateralTokenAddress, marketMakerAddress, investmentAmount),
   safeAddFundingTransaction(
@@ -53,8 +56,8 @@ export const safeAddFundingToMarket = (
     marketMakerAddress,
     investmentAmount,
     distributionHint,
-    positionId,
-    minRefund,
-    maxRefund,
+    positionIds,
+    minRefunds,
+    maxRefunds,
   ),
 ];
