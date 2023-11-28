@@ -2,7 +2,6 @@ import { Interface } from "@ethersproject/abi";
 import { BigNumberish } from "@ethersproject/bignumber";
 import { HashZero } from "@ethersproject/constants";
 import ConditionalTokensABI from "../abi/ConditionalTokens.json";
-import NegRiskAdapterABI from "../abi/NegRiskAdapter.json";
 import { CallType, Transaction } from "../types";
 
 const encodeRedeem = (
@@ -31,20 +30,6 @@ const redeemTransaction = (
   value: "0",
 });
 
-const encodeRedeemNegRisk = (conditionId: string, amounts: [BigNumberish, BigNumberish]): string =>
-  new Interface(NegRiskAdapterABI).encodeFunctionData("redeemPositions(bytes32,uint256[])", [conditionId, amounts]);
-
-const redeemNegRiskTransactions = (
-  negRiskAdapterAddress: string,
-  conditionId: string,
-  amounts: [BigNumberish, BigNumberish],
-): Transaction => ({
-  to: negRiskAdapterAddress,
-  typeCode: CallType.Call,
-  data: encodeRedeemNegRisk(conditionId, amounts),
-  value: "0",
-});
-
 export const redeemPositions = (
   conditionalTokensAddress: string,
   collateralTokenAddress: string,
@@ -62,9 +47,3 @@ export const redeemPositions = (
     redeemTransaction(conditionalTokensAddress, collateralTokenAddress, parentCollectionId, conditionId, partition),
   ];
 };
-
-export const redeemPositionsNegRisk = (
-  negRiskAdapterAddress: string,
-  conditionId: string,
-  amounts: [BigNumberish, BigNumberish],
-): Transaction[] => [redeemNegRiskTransactions(negRiskAdapterAddress, conditionId, amounts)];
