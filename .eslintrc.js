@@ -1,9 +1,9 @@
 module.exports = {
   extends: "airbnb-typescript-prettier",
   parserOptions: {
-      "project": "./tsconfig.json",
-      "tsconfigRootDir": __dirname,
-      "sourceType": "module"
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname,
+    sourceType: "module",
   },
   rules: {
     "@typescript-eslint/no-inferrable-types": "off",
@@ -19,13 +19,12 @@ module.exports = {
       "error",
       "ignorePackages",
       {
-        "js": "never",
-        "ts": "never"
-      }
+        js: "never",
+        ts: "never",
+      },
     ],
     "import/prefer-default-export": "off",
     "prefer-destructuring": "off",
     "prefer-template": "off",
-
   },
 };
