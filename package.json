@@ -1,6 +1,6 @@
 {
   "name": "@polymarket/sdk",
-  "version": "4.2.2",
+  "version": "5.0.0",
   "description": "SDK to simplify common interactions with the Polymarket proxy wallet",
   "author": "Tom French <tom@tomfren.ch>",
   "repository": "https://github.com/TokenUnion/polymarket-sdk.git",
@@ -14,6 +14,10 @@
     {
       "name": "Tom French",
       "url": "https://github.com/tomafrench"
+    },
+    {
+      "name": "Mike Shrieve",
+      "url": "https://github.com/mshrieve"
     }
   ],
   "dependencies": {
