@@ -18,6 +18,7 @@ const testCases = [
   [[2, 3], 12],
   [[0, 2, 3], 13],
   [[1, 2, 3], 14],
+  [[0, 1, 2, 3], 15],
 ] as [number[], number][];
 
 describe("getIndexSet", () => {
