@@ -22,7 +22,7 @@ const testCases = [
 ] as [number[], number][];
 
 describe("getIndexSet", () => {
-  it.each(testCases)(`should compute the index set`, (indices, expectedIndexSet) => {
+  it.each(testCases)(`should get the index set`, (indices, expectedIndexSet) => {
     expect(getIndexSet(indices)).toEqual(expectedIndexSet);
   });
 });
