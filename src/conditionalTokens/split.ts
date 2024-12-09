@@ -49,7 +49,6 @@ export const splitPosition = (
   // eslint-disable-next-line no-bitwise
   const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1 << i);
   return [
-    erc20ApprovalTransaction(collateralTokenAddress, conditionalTokensAddress, amount),
     splitTransaction(
       conditionalTokensAddress,
       collateralTokenAddress,
