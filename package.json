@@ -1,6 +1,6 @@
 {
   "name": "@polymarket/sdk",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "SDK to simplify common interactions with the Polymarket proxy wallet",
   "author": "Tom French <tom@tomfren.ch>",
   "repository": "https://github.com/Polymarket/polymarket-sdk.git",
@@ -24,9 +24,6 @@
       "url": "https://github.com/JonathanAmenechi"
     }
   ],
-  "dependencies": {
-    "@tomfrench/matic-proofs": "^0.3.2"
-  },
   "peerDependencies": {
     "@ethersproject/abi": "^5.4.1",
     "@ethersproject/address": "^5.0.8",
