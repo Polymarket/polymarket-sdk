@@ -1,15 +1,14 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
+import { encodeFunctionData } from "viem";
 import ERC20ABI from "../abi/ERC20.json";
 import { CallType, Transaction } from "../types";
 
-const encodeTokenTransfer = (recipientAddress: string, amount: BigNumberish): string =>
-  new Interface(ERC20ABI).encodeFunctionData("transfer(address,uint256)", [recipientAddress, amount]);
+const encodeTokenTransfer = (recipientAddress: string, amount: bigint): string =>
+  encodeFunctionData({ abi: ERC20ABI, functionName: "transfer", args: [recipientAddress, amount] });
 
 export const erc20TransferTransaction = (
   tokenAddress: string,
   recipient: string,
-  amount: BigNumberish,
+  amount: bigint,
 ): Transaction => ({
   to: tokenAddress,
   typeCode: CallType.Call,

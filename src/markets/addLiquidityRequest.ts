@@ -1,20 +1,19 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumber } from "@ethersproject/bignumber";
+import { encodeFunctionData } from "viem";
 import { CallType, Transaction } from "../types";
 import LiquidityRequestLogABI from "../abi/LiquidityRequestLog.json";
 
-const encodeAddLiquidityRequest = (reason: string, marketMakerAddress: string, tradeAmount: BigNumber): string =>
-  new Interface(LiquidityRequestLogABI).encodeFunctionData("addLiquidityRequest(string,address,uint256)", [
-    reason,
-    marketMakerAddress,
-    tradeAmount,
-  ]);
+const encodeAddLiquidityRequest = (reason: string, marketMakerAddress: string, tradeAmount: bigint): string =>
+  encodeFunctionData({
+    abi: LiquidityRequestLogABI,
+    functionName: "addLiquidityRequest",
+    args: [reason, marketMakerAddress, tradeAmount],
+  });
 
 const addLiquidityRequestTransaction = (
   liquidityRequestLog: string,
   reason: string,
   marketMakerAddress: string,
-  tradeAmount: BigNumber,
+  tradeAmount: bigint,
 ): Transaction => ({
   to: liquidityRequestLog,
   typeCode: CallType.Call,
@@ -26,5 +25,5 @@ export const addLiquidityRequest = (
   liquidityRequestLog: string,
   reason: string,
   marketMakerAddress: string,
-  tradeAmount: BigNumber,
+  tradeAmount: bigint,
 ): Transaction[] => [addLiquidityRequestTransaction(liquidityRequestLog, reason, marketMakerAddress, tradeAmount)];

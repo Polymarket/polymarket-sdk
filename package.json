@@ -1,6 +1,6 @@
 {
   "name": "@polymarket/sdk",
-  "version": "6.0.1",
+  "version": "7.0.0",
   "description": "SDK to simplify common interactions with the Polymarket proxy wallet",
   "author": "Tom French <tom@tomfren.ch>",
   "repository": "https://github.com/Polymarket/polymarket-sdk.git",
@@ -24,25 +24,10 @@
       "url": "https://github.com/JonathanAmenechi"
     }
   ],
-  "peerDependencies": {
-    "@ethersproject/abi": "^5.4.1",
-    "@ethersproject/address": "^5.0.8",
-    "@ethersproject/bignumber": "^5.0.8",
-    "@ethersproject/constants": "^5.0.8",
-    "@ethersproject/contracts": "^5.0.9",
-    "@ethersproject/keccak256": "^5.0.6",
-    "@ethersproject/providers": "^5.0.14",
-    "@ethersproject/solidity": "^5.0.7"
+  "dependencies": {
+    "viem": "^2.46.3"
   },
   "devDependencies": {
-    "@ethersproject/abi": "^5.0.7",
-    "@ethersproject/address": "^5.0.8",
-    "@ethersproject/bignumber": "^5.0.8",
-    "@ethersproject/constants": "^5.0.8",
-    "@ethersproject/contracts": "^5.0.9",
-    "@ethersproject/keccak256": "^5.0.6",
-    "@ethersproject/providers": "^5.0.14",
-    "@ethersproject/solidity": "^5.0.7",
     "@types/jest": "^27.0.1",
     "@types/mocha": "^9.0.0",
     "eslint": "^7.18.0",
@@ -50,9 +35,8 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
-    "shx": "^0.3.3",
     "ts-jest": "^26.4.4",
-    "typescript": "^4.1.3"
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "blockchain",
@@ -64,7 +48,7 @@
   "scripts": {
     "prebuild": "pnpm clean",
     "build": "tsc --project tsconfig.production.json",
-    "clean": "shx rm -rf ./lib",
+    "clean": "rm -rf ./lib",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src/**/*",
     "prepack": "pnpm test && pnpm build",
     "test": "jest"

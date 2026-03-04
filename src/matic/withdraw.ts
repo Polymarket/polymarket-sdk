@@ -1,17 +1,18 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
+import { encodeFunctionData, parseAbi } from "viem";
 import { CallType, Transaction } from "../types";
 
-const encodeWithdraw = (withdrawAmount: BigNumberish): string =>
-  new Interface(["function withdraw(uint256)"]).encodeFunctionData("withdraw(uint256)", [withdrawAmount]);
+const withdrawAbi = parseAbi(["function withdraw(uint256)"]);
 
-const withdrawTransaction = (tokenAddress: string, withdrawAmount: BigNumberish): Transaction => ({
+const encodeWithdraw = (withdrawAmount: bigint): string =>
+  encodeFunctionData({ abi: withdrawAbi, functionName: "withdraw", args: [withdrawAmount] });
+
+const withdrawTransaction = (tokenAddress: string, withdrawAmount: bigint): Transaction => ({
   to: tokenAddress,
   typeCode: CallType.Call,
   data: encodeWithdraw(withdrawAmount),
   value: "0",
 });
 
-export const withdrawFundsOnMatic = (tokenAddress: string, withdrawAmount: BigNumberish): Transaction[] => [
+export const withdrawFundsOnMatic = (tokenAddress: string, withdrawAmount: bigint): Transaction[] => [
   withdrawTransaction(tokenAddress, withdrawAmount),
 ];

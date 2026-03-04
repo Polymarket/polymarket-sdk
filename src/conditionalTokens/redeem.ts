@@ -1,6 +1,4 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
-import { HashZero } from "@ethersproject/constants";
+import { encodeFunctionData, zeroHash } from "viem";
 import ConditionalTokensABI from "../abi/ConditionalTokens.json";
 import { CallType, Transaction } from "../types";
 
@@ -8,21 +6,20 @@ const encodeRedeem = (
   collateralTokenAddress: string,
   parentCollectionId: string,
   conditionId: string,
-  partition: BigNumberish[],
+  partition: bigint[],
 ): string =>
-  new Interface(ConditionalTokensABI).encodeFunctionData("redeemPositions(address,bytes32,bytes32,uint256[])", [
-    collateralTokenAddress,
-    parentCollectionId,
-    conditionId,
-    partition,
-  ]);
+  encodeFunctionData({
+    abi: ConditionalTokensABI,
+    functionName: "redeemPositions",
+    args: [collateralTokenAddress, parentCollectionId, conditionId, partition],
+  });
 
 const redeemTransaction = (
   conditionalTokensAddress: string,
   collateralTokenAddress: string,
   parentCollectionId: string,
   conditionId: string,
-  partition: BigNumberish[],
+  partition: bigint[],
 ): Transaction => ({
   to: conditionalTokensAddress,
   typeCode: CallType.Call,
@@ -36,13 +33,11 @@ export const redeemPositions = (
   // parentCollectionId: string,
   conditionId: string,
   outcomeSlotCount: number,
-  // partition: BigNumberish[],
+  // partition: bigint[],
 ): Transaction[] => {
-  // Assume that we're redeeming a condition which has been split from collateral
-  const parentCollectionId = HashZero;
-  // Assume that we're redeeming a full set of outcome tokens
+  const parentCollectionId = zeroHash;
   // eslint-disable-next-line no-bitwise
-  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1 << i);
+  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => BigInt(1 << i));
   return [
     redeemTransaction(conditionalTokensAddress, collateralTokenAddress, parentCollectionId, conditionId, partition),
   ];
