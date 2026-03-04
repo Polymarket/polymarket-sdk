@@ -7,9 +7,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=22"
   },
+  "packageManager": "pnpm@10.30.3",
   "contributors": [
     {
       "name": "Tom French",
@@ -62,11 +62,11 @@
   ],
   "license": "MIT",
   "scripts": {
-    "prebuild": "yarn clean",
+    "prebuild": "pnpm clean",
     "build": "tsc --project tsconfig.production.json",
     "clean": "shx rm -rf ./lib",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src/**/*",
-    "prepack": "yarn test && yarn build",
+    "prepack": "pnpm test && pnpm build",
     "test": "jest"
   }
 }

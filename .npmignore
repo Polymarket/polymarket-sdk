@@ -12,7 +12,7 @@ test
 jest.config.js
 tsconfig.json
 tsconfig.production.json
-yarn.lock
+pnpm-lock.yaml
 
 *.log
 *.tgz
