@@ -1,4 +1,4 @@
-import { encodeFunctionData } from "viem";
+import { encodeFunctionData, zeroHash } from "viem";
 import ConditionalTokensABI from "../abi/ConditionalTokens.json";
 import { CallType, Transaction } from "../types";
 
@@ -38,9 +38,8 @@ export const mergePositions = (
   // partition: bigint[],
   amount: bigint,
 ): Transaction[] => {
-  const parentCollectionId = `0x${"0".repeat(64)}`;
-  // eslint-disable-next-line no-bitwise
-  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => BigInt(1 << i));
+  const parentCollectionId = zeroHash;
+  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1n << BigInt(i));
   return [
     mergeTransaction(
       conditionalTokensAddress,

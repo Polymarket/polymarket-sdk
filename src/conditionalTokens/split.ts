@@ -40,8 +40,7 @@ export const splitPosition = (
   amount: bigint,
 ): Transaction[] => {
   const parentCollectionId = zeroHash;
-  // eslint-disable-next-line no-bitwise
-  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => BigInt(1 << i));
+  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1n << BigInt(i));
   return [
     splitTransaction(
       conditionalTokensAddress,
