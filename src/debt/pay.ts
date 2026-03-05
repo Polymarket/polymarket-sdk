@@ -1,19 +1,20 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumber } from "@ethersproject/bignumber";
+import { encodeFunctionData, parseAbi } from "viem";
 import { Transaction, CallType } from "../types";
 import { erc20ApprovalTransaction } from "../utils";
 
-const encodePayDebt = (amount: BigNumber): string =>
-  new Interface(["function payDebt(uint256)"]).encodeFunctionData("payDebt(uint256)", [amount]);
+const payDebtAbi = parseAbi(["function payDebt(uint256)"]);
 
-const payDebtTransaction = (debtTracker: string, amount: BigNumber): Transaction => ({
+const encodePayDebt = (amount: bigint): string =>
+  encodeFunctionData({ abi: payDebtAbi, functionName: "payDebt", args: [amount] });
+
+const payDebtTransaction = (debtTracker: string, amount: bigint): Transaction => ({
   to: debtTracker,
   typeCode: CallType.Call,
   data: encodePayDebt(amount),
   value: "0",
 });
 
-export const payDebt = (debtTracker: string, tokenAddress: string, amount: BigNumber): Transaction[] => [
+export const payDebt = (debtTracker: string, tokenAddress: string, amount: bigint): Transaction[] => [
   erc20ApprovalTransaction(tokenAddress, debtTracker, amount),
   payDebtTransaction(debtTracker, amount),
 ];

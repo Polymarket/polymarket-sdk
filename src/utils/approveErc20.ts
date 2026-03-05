@@ -1,12 +1,11 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
+import { encodeFunctionData } from "viem";
 import ERC20ABI from "../abi/ERC20.json";
 import { CallType, Transaction } from "../types";
 
-const encodeTokenApproval = (approvedAddress: string, approvalAmount: BigNumberish): string =>
-  new Interface(ERC20ABI).encodeFunctionData("approve(address,uint256)", [approvedAddress, approvalAmount]);
+const encodeTokenApproval = (approvedAddress: string, approvalAmount: bigint): string =>
+  encodeFunctionData({ abi: ERC20ABI, functionName: "approve", args: [approvedAddress, approvalAmount] });
 
-export const erc20ApprovalTransaction = (tokenAddress: string, spender: string, amount: BigNumberish): Transaction => ({
+export const erc20ApprovalTransaction = (tokenAddress: string, spender: string, amount: bigint): Transaction => ({
   to: tokenAddress,
   typeCode: CallType.Call,
   data: encodeTokenApproval(spender, amount),

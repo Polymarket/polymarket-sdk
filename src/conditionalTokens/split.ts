@@ -1,6 +1,4 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
-import { HashZero } from "@ethersproject/constants";
+import { encodeFunctionData, zeroHash } from "viem";
 import ConditionalTokensABI from "../abi/ConditionalTokens.json";
 import { erc20ApprovalTransaction } from "../utils";
 import { CallType, Transaction } from "../types";
@@ -9,24 +7,22 @@ const encodeSplit = (
   collateralTokenAddress: string,
   parentCollectionId: string,
   conditionId: string,
-  partition: BigNumberish[],
-  amount: BigNumberish,
+  partition: bigint[],
+  amount: bigint,
 ): string =>
-  new Interface(ConditionalTokensABI).encodeFunctionData("splitPosition(address,bytes32,bytes32,uint256[],uint256)", [
-    collateralTokenAddress,
-    parentCollectionId,
-    conditionId,
-    partition,
-    amount,
-  ]);
+  encodeFunctionData({
+    abi: ConditionalTokensABI,
+    functionName: "splitPosition",
+    args: [collateralTokenAddress, parentCollectionId, conditionId, partition, amount],
+  });
 
 const splitTransaction = (
   conditionalTokensAddress: string,
   collateralTokenAddress: string,
   parentCollectionId: string,
   conditionId: string,
-  partition: BigNumberish[],
-  amount: BigNumberish,
+  partition: bigint[],
+  amount: bigint,
 ): Transaction => ({
   to: conditionalTokensAddress,
   typeCode: CallType.Call,
@@ -40,14 +36,11 @@ export const splitPosition = (
   // parentCollectionId: string,
   conditionId: string,
   outcomeSlotCount: number,
-  // partition: BigNumberish[],
-  amount: BigNumberish,
+  // partition: bigint[],
+  amount: bigint,
 ): Transaction[] => {
-  // Assume that we're merging a condition which has been split from collateral
-  const parentCollectionId = HashZero;
-  // Assume that we're mergine a full set of outcome tokens
-  // eslint-disable-next-line no-bitwise
-  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1 << i);
+  const parentCollectionId = zeroHash;
+  const partition = Array.from({ length: outcomeSlotCount }, (_: undefined, i: number) => 1n << BigInt(i));
   return [
     splitTransaction(
       conditionalTokensAddress,

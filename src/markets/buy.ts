@@ -1,25 +1,24 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
+import { encodeFunctionData } from "viem";
 import FixedProductMarketMakerABI from "../abi/FixedProductMarketMaker.json";
 import { erc20ApprovalTransaction } from "../utils";
 import { CallType, Transaction } from "../types";
 
 const encodeBuy = (
-  investmentAmount: BigNumberish,
-  outcomeIndex: BigNumberish,
-  minOutcomeTokensToBuy: BigNumberish,
+  investmentAmount: bigint,
+  outcomeIndex: bigint,
+  minOutcomeTokensToBuy: bigint,
 ): string =>
-  new Interface(FixedProductMarketMakerABI).encodeFunctionData("buy(uint256,uint256,uint256)", [
-    investmentAmount,
-    outcomeIndex,
-    minOutcomeTokensToBuy,
-  ]);
+  encodeFunctionData({
+    abi: FixedProductMarketMakerABI,
+    functionName: "buy",
+    args: [investmentAmount, outcomeIndex, minOutcomeTokensToBuy],
+  });
 
 const buyTransaction = (
   marketMakerAddress: string,
-  investmentAmount: BigNumberish,
-  outcomeIndex: BigNumberish,
-  minOutcomeTokensToBuy: BigNumberish,
+  investmentAmount: bigint,
+  outcomeIndex: bigint,
+  minOutcomeTokensToBuy: bigint,
 ): Transaction => ({
   to: marketMakerAddress,
   typeCode: CallType.Call,
@@ -30,9 +29,9 @@ const buyTransaction = (
 export const buyMarketOutcome = (
   marketMakerAddress: string,
   collateralTokenAddress: string,
-  investmentAmount: BigNumberish,
-  outcomeIndex: BigNumberish,
-  minOutcomeTokensToBuy: BigNumberish,
+  investmentAmount: bigint,
+  outcomeIndex: bigint,
+  minOutcomeTokensToBuy: bigint,
 ): Transaction[] => [
   erc20ApprovalTransaction(collateralTokenAddress, marketMakerAddress, investmentAmount),
   buyTransaction(marketMakerAddress, investmentAmount, outcomeIndex, minOutcomeTokensToBuy),

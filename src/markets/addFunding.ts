@@ -1,19 +1,19 @@
-import { Interface } from "@ethersproject/abi";
-import { BigNumberish } from "@ethersproject/bignumber";
+import { encodeFunctionData } from "viem";
 import FixedProductMarketMakerABI from "../abi/FixedProductMarketMaker.json";
 import { erc20ApprovalTransaction } from "../utils";
 import { CallType, Transaction } from "../types";
 
-const encodeAddFunding = (investmentAmount: BigNumberish, distributionHint: BigNumberish[]): string =>
-  new Interface(FixedProductMarketMakerABI).encodeFunctionData("addFunding(uint256,uint256[])", [
-    investmentAmount,
-    distributionHint,
-  ]);
+const encodeAddFunding = (investmentAmount: bigint, distributionHint: bigint[]): string =>
+  encodeFunctionData({
+    abi: FixedProductMarketMakerABI,
+    functionName: "addFunding",
+    args: [investmentAmount, distributionHint],
+  });
 
 const addFundingTransaction = (
   marketMakerAddress: string,
-  investmentAmount: BigNumberish,
-  distributionHint: BigNumberish[],
+  investmentAmount: bigint,
+  distributionHint: bigint[],
 ): Transaction => ({
   to: marketMakerAddress,
   typeCode: CallType.Call,
@@ -24,8 +24,8 @@ const addFundingTransaction = (
 export const addFundingToMarket = (
   marketMakerAddress: string,
   collateralTokenAddress: string,
-  investmentAmount: BigNumberish,
-  distributionHint: BigNumberish[] = [],
+  investmentAmount: bigint,
+  distributionHint: bigint[] = [],
 ): Transaction[] => [
   erc20ApprovalTransaction(collateralTokenAddress, marketMakerAddress, investmentAmount),
   addFundingTransaction(marketMakerAddress, investmentAmount, distributionHint),
