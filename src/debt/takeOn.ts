@@ -1,5 +1,5 @@
 import { encodeFunctionData, parseAbi, type Hex } from "viem";
-import { CallType, Transaction } from "../types";
+import { CallType, Transaction } from "../types.js";
 
 const takeOnDebtAbi = parseAbi(["function takeOnDebt(uint256,bytes32)"]);
 

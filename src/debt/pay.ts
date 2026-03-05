@@ -1,6 +1,6 @@
 import { encodeFunctionData, parseAbi } from "viem";
-import { Transaction, CallType } from "../types";
-import { erc20ApprovalTransaction } from "../utils";
+import { Transaction, CallType } from "../types.js";
+import { erc20ApprovalTransaction } from "../utils/index.js";
 
 const payDebtAbi = parseAbi(["function payDebt(uint256)"]);
 

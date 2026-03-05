@@ -1,6 +1,4 @@
-/* eslint-env jest */
-
-import { getIndexSet } from "../src";
+import { getIndexSet } from "../src/index.js";
 
 const testCases = [
   [[0], BigInt(1)],

@@ -1,7 +1,7 @@
 import { encodeFunctionData } from "viem";
-import FixedProductMarketMakerABI from "../abi/FixedProductMarketMaker.json";
-import { erc1155ApprovalTransaction } from "../utils";
-import { CallType, Transaction } from "../types";
+import FixedProductMarketMakerABI from "../abi/FixedProductMarketMaker.json" with { type: "json" };
+import { erc1155ApprovalTransaction } from "../utils/index.js";
+import { CallType, Transaction } from "../types.js";
 
 const encodeSell = (
   returnAmount: bigint,

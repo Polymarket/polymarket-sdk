@@ -1,6 +1,4 @@
-/* eslint-env jest */
-
-import { getMarketIndex } from "../src";
+import { getMarketIndex } from "../src/index.js";
 
 const testCases: [string, number][] = [
   ["0xb20c874543db3de05e85f24dc912e915a641c579db553ff12ed135a68b3f7500", 0],

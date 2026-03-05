@@ -3,13 +3,11 @@ src
 test
 
 #files
-.commitlintrc.js
 .eslintignore
-.eslintrc.js
+.eslintrc.cjs
 .gitignore
-.lintstagedrc.js
 .prettierrc
-jest.config.js
+vitest.config.ts
 tsconfig.json
 tsconfig.production.json
 pnpm-lock.yaml

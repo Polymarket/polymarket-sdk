@@ -1,7 +1,7 @@
 import { encodeFunctionData, zeroHash } from "viem";
-import ConditionalTokensABI from "../abi/ConditionalTokens.json";
-import { erc20ApprovalTransaction } from "../utils";
-import { CallType, Transaction } from "../types";
+import ConditionalTokensABI from "../abi/ConditionalTokens.json" with { type: "json" };
+import { erc20ApprovalTransaction } from "../utils/index.js";
+import { CallType, Transaction } from "../types.js";
 
 const encodeSplit = (
   collateralTokenAddress: string,

@@ -1,5 +1,4 @@
-/* eslint-env jest */
-import { getProxyWalletAddress } from "../src";
+import { getProxyWalletAddress } from "../src/index.js";
 
 const testCases: [[string, string], string][] = [
   [

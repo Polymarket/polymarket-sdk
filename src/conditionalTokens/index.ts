@@ -1,3 +1,3 @@
-export { mergePositions } from "./merge";
-export { redeemPositions } from "./redeem";
-export { splitPosition } from "./split";
+export { mergePositions } from "./merge.js";
+export { redeemPositions } from "./redeem.js";
+export { splitPosition } from "./split.js";

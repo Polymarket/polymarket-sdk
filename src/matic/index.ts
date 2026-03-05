@@ -1,1 +1,1 @@
-export { withdrawFundsOnMatic } from "./withdraw";
+export { withdrawFundsOnMatic } from "./withdraw.js";

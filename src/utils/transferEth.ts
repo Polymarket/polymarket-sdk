@@ -1,4 +1,4 @@
-import { CallType, Transaction } from "../types";
+import { CallType, Transaction } from "../types.js";
 
 export const ethTransferTransaction = (recipient: string, amount: bigint): Transaction => ({
   to: recipient,

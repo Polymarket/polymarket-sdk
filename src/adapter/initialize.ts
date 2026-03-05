@@ -1,7 +1,7 @@
 import { encodeFunctionData } from "viem";
-import { CallType, Transaction } from "../types";
-import AdapterAbi from "../abi/UmaCtfAdapter.json";
-import NegRiskAdapterAbi from "../abi/NegRiskUmaCtfAdapter.json";
+import { CallType, Transaction } from "../types.js";
+import AdapterAbi from "../abi/UmaCtfAdapter.json" with { type: "json" };
+import NegRiskAdapterAbi from "../abi/NegRiskUmaCtfAdapter.json" with { type: "json" };
 
 const encodeInitialize = (
   ancillaryData: Uint8Array,
