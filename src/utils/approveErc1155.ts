@@ -1,6 +1,6 @@
 import { encodeFunctionData } from "viem";
-import ERC1155ABI from "../abi/ERC1155.json";
-import { CallType, Transaction } from "../types";
+import ERC1155ABI from "../abi/ERC1155.json" with { type: "json" };
+import { CallType, type Transaction } from "../types.js";
 
 const encodeTokenApproval = (approvedAddress: string, approval: boolean): string =>
   encodeFunctionData({ abi: ERC1155ABI, functionName: "setApprovalForAll", args: [approvedAddress, approval] });

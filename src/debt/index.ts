@@ -1,2 +1,2 @@
-export { takeOnDebt } from "./takeOn";
-export { payDebt } from "./pay";
+export { payDebt } from "./pay.js";
+export { takeOnDebt } from "./takeOn.js";

@@ -1,6 +1,6 @@
 import { encodeFunctionData, zeroHash } from "viem";
-import ConditionalTokensABI from "../abi/ConditionalTokens.json";
-import { CallType, Transaction } from "../types";
+import ConditionalTokensABI from "../abi/ConditionalTokens.json" with { type: "json" };
+import { CallType, type Transaction } from "../types.js";
 
 const encodeRedeem = (
   collateralTokenAddress: string,

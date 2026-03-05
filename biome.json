@@ -1,0 +1,26 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.5/schema.json",
+  "files": {
+    "includes": ["**", "!**/lib", "!**/src/abi"]
+  },
+  "formatter": {
+    "lineWidth": 120,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "trailingCommas": "all",
+      "quoteStyle": "double"
+    }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "noInferrableTypes": "off",
+        "useTemplate": "off"
+      }
+    }
+  }
+}

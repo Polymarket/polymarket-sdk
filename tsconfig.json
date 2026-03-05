@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
+    "target": "es2022",
+    "module": "nodenext",
     "outDir": "lib",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     "sourceMap": false,
     "allowJs": false,
     "declaration": true,
     "declarationDir": "lib",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "noImplicitAny": true,
@@ -19,6 +17,6 @@
     "strict": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "test", "jest.config.js"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "lib"]
 }

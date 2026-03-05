@@ -1,11 +1,4 @@
-import {
-  encodeAbiParameters,
-  encodePacked,
-  getCreate2Address,
-  keccak256,
-  type Address,
-  type Hex,
-} from "viem";
+import { type Address, encodeAbiParameters, encodePacked, getCreate2Address, type Hex, keccak256 } from "viem";
 
 const WALLET_FACTORY_SALT = keccak256(encodePacked(["string"], ["polymarket-wallet-factory"]));
 const PROXY_WALLET_BYTECODE: Hex =

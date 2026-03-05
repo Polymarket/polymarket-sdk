@@ -1,11 +1,18 @@
 {
   "name": "@polymarket/sdk",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "SDK to simplify common interactions with the Polymarket proxy wallet",
   "author": "Tom French <tom@tomfren.ch>",
   "repository": "https://github.com/Polymarket/polymarket-sdk.git",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
+  },
   "engines": {
     "node": ">=22"
   },
@@ -28,15 +35,9 @@
     "viem": "^2.46.3"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.1",
-    "@types/mocha": "^9.0.0",
-    "eslint": "^7.18.0",
-    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
-    "jest": "^26.6.3",
-    "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1",
-    "ts-jest": "^26.4.4",
-    "typescript": "^5.9.3"
+    "@biomejs/biome": "2.4.5",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
   },
   "keywords": [
     "blockchain",
@@ -49,8 +50,9 @@
     "prebuild": "pnpm clean",
     "build": "tsc --project tsconfig.production.json",
     "clean": "rm -rf ./lib",
-    "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src/**/*",
+    "lint": "biome check .",
+    "lint:fix": "biome check --fix .",
     "prepack": "pnpm test && pnpm build",
-    "test": "jest"
+    "test": "vitest run"
   }
 }

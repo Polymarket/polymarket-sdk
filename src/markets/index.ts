@@ -1,5 +1,5 @@
-export { buyMarketOutcome } from "./buy";
-export { sellMarketOutcome } from "./sell";
-export { addFundingToMarket } from "./addFunding";
-export { removeFundingFromMarket } from "./removeFunding";
-export { safeAddFundingToMarket } from "./safeAddFunding";
+export { addFundingToMarket } from "./addFunding.js";
+export { buyMarketOutcome } from "./buy.js";
+export { removeFundingFromMarket } from "./removeFunding.js";
+export { safeAddFundingToMarket } from "./safeAddFunding.js";
+export { sellMarketOutcome } from "./sell.js";
