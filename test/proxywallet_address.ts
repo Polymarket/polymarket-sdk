@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { getProxyWalletAddress } from "../src/index.js";
 
 const testCases: [[string, string], string][] = [
