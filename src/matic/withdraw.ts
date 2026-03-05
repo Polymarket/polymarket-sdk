@@ -1,5 +1,5 @@
 import { encodeFunctionData, parseAbi } from "viem";
-import { CallType, Transaction } from "../types.js";
+import { CallType, type Transaction } from "../types.js";
 
 const withdrawAbi = parseAbi(["function withdraw(uint256)"]);
 

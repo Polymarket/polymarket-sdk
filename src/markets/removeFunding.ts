@@ -1,6 +1,6 @@
 import { encodeFunctionData } from "viem";
 import FixedProductMarketMakerABI from "../abi/FixedProductMarketMaker.json" with { type: "json" };
-import { CallType, Transaction } from "../types.js";
+import { CallType, type Transaction } from "../types.js";
 
 const encodeRemoveFunding = (sharesToBurn: bigint): string =>
   encodeFunctionData({ abi: FixedProductMarketMakerABI, functionName: "removeFunding", args: [sharesToBurn] });

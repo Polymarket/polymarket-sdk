@@ -44,9 +44,9 @@ const testCases: [[string, string], string][] = [
 ];
 
 describe("getProxyWalletAddress", () => {
-  it.each(testCases)(
-    `should compute the correct proxy wallet address`,
-    ([factoryAddress, userAddress], expectedProxyWalletAddress) =>
-      expect(getProxyWalletAddress(factoryAddress, userAddress)).toEqual(expectedProxyWalletAddress),
-  );
+  it.each(testCases)(`should compute the correct proxy wallet address`, ([
+    factoryAddress,
+    userAddress,
+  ], expectedProxyWalletAddress) =>
+    expect(getProxyWalletAddress(factoryAddress, userAddress)).toEqual(expectedProxyWalletAddress));
 });

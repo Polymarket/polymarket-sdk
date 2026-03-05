@@ -1,6 +1,6 @@
 import { encodeFunctionData } from "viem";
-import { CallType, Transaction } from "../types.js";
 import LiquidityRequestLogABI from "../abi/LiquidityRequestLog.json" with { type: "json" };
+import { CallType, type Transaction } from "../types.js";
 
 const encodeAddLiquidityRequest = (reason: string, marketMakerAddress: string, tradeAmount: bigint): string =>
   encodeFunctionData({

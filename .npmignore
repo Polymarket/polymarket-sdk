@@ -3,10 +3,8 @@ src
 test
 
 #files
-.eslintignore
-.eslintrc.cjs
+biome.json
 .gitignore
-.prettierrc
 vitest.config.ts
 tsconfig.json
 tsconfig.production.json

@@ -1,10 +1,8 @@
-import { encodeFunctionData, parseAbi, type Address } from "viem";
+import { type Address, encodeFunctionData, parseAbi } from "viem";
+import { CallType, type Transaction } from "../types.js";
 import { erc20ApprovalTransaction } from "../utils/index.js";
-import { CallType, Transaction } from "../types.js";
 
-const safeAddFundingAbi = parseAbi([
-  "function addFunding(address,uint256,uint256[],uint256[],uint256[],uint256[])",
-]);
+const safeAddFundingAbi = parseAbi(["function addFunding(address,uint256,uint256[],uint256[],uint256[],uint256[])"]);
 
 const encodeSafeAddFunding = (
   marketMakerAddress: string,

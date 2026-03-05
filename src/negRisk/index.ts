@@ -1,6 +1,6 @@
 import { encodeFunctionData } from "viem";
-import { CallType, Transaction } from "../types.js";
 import NegRiskAdapterABI from "../abi/NegRiskAdapter.json" with { type: "json" };
+import { CallType, type Transaction } from "../types.js";
 
 type ConvertPositionsParams = {
   negRiskAdapterAddress: string;

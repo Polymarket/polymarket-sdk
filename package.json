@@ -35,10 +35,8 @@
     "viem": "^2.46.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.5",
     "@types/mocha": "^9.0.0",
-    "eslint": "^7.18.0",
-    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
-    "prettier": "^2.2.1",
     "typescript": "^5.9.3",
     "vitest": "^3.0.0"
   },
@@ -53,7 +51,8 @@
     "prebuild": "pnpm clean",
     "build": "tsc --project tsconfig.production.json",
     "clean": "rm -rf ./lib",
-    "lint": "eslint --config ./.eslintrc.cjs --ignore-path ./.eslintignore ./src/**/*",
+    "lint": "biome check .",
+    "lint:fix": "biome check --fix .",
     "prepack": "pnpm test && pnpm build",
     "test": "vitest run"
   }
