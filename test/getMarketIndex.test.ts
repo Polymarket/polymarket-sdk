@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { getMarketIndex } from "../src/index.js";
 
 const testCases: [string, number][] = [

@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { getIndexSet } from "../src/index.js";
 
 const testCases = [
