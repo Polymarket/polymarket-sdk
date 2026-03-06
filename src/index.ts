@@ -4,4 +4,5 @@ export * from "./markets/index.js";
 export * from "./matic/index.js";
 export { negRiskOperations } from "./negRisk/index.js";
 export { getProxyWalletAddress } from "./proxyWallet.js";
+export * from "./types.js";
 export { erc20TransferTransaction, ethTransferTransaction, getIndexSet, getMarketIndex } from "./utils/index.js";
