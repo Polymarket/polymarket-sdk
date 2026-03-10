@@ -42,6 +42,4 @@ const redeemPositions = ({ negRiskAdapterAddress, conditionId, amounts }: Redeem
   value: "0",
 });
 
-const negRiskOperations = { convertPositions, redeemPositions };
-
-export { negRiskOperations };
+export const negRiskOperations = { convertPositions, redeemPositions };
