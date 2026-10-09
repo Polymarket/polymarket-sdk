@@ -3,6 +3,7 @@ export * from "./debt/index.js";
 export * from "./markets/index.js";
 export * from "./matic/index.js";
 export { negRiskOperations } from "./negRisk/index.js";
+export { getDepositWalletAddress } from "./depositWallet.js";
 export { getProxyWalletAddress } from "./proxyWallet.js";
 export * from "./types.js";
 export { erc20TransferTransaction, ethTransferTransaction, getIndexSet, getMarketIndex } from "./utils/index.js";
